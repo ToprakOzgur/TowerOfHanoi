@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4327629362811188}
   - component: {fileID: 212333708181627024}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ring_3_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4611895439627362}
   - component: {fileID: 212189999906785360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ring_3_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,8 +53,25 @@ GameObject:
   - component: {fileID: 4807577399900824}
   - component: {fileID: 50175464068703638}
   - component: {fileID: 61044115971823204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ring3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1959061197371528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4873772392468868}
+  - component: {fileID: 70421551364248082}
+  - component: {fileID: 70352051449349424}
+  m_Layer: 10
+  m_Name: Pincolliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,13 +110,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1926627522414284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.62, z: 0}
+  m_LocalPosition: {x: 0, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4611895439627362}
   - {fileID: 4327629362811188}
+  - {fileID: 4873772392468868}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4873772392468868
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959061197371528}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4807577399900824}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50175464068703638
 Rigidbody2D:
@@ -112,11 +143,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 46a0c5d8a023c4b939c2f91f4d536a56, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -146,6 +177,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.3728337, y: 1.256467}
   m_EdgeRadius: 0
+--- !u!70 &70352051449349424
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959061197371528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 9ec751282181040e8af21d8d712f0f29, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.2073526, y: 0.15503049}
+  m_Size: {x: 0.9423537, y: 1.5740752}
+  m_Direction: 0
+--- !u!70 &70421551364248082
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959061197371528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 9ec751282181040e8af21d8d712f0f29, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.2347803, y: 0.15624893}
+  m_Size: {x: 0.87226677, y: 1.5410054}
+  m_Direction: 0
 --- !u!212 &212189999906785360
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -179,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dd5abb366b6d9442e9cf0406002610cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
