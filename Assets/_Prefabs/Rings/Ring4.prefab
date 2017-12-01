@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4185284744366388}
   - component: {fileID: 70304584096310038}
   - component: {fileID: 70648291800889190}
+  - component: {fileID: 114551432702799760}
   m_Layer: 10
   m_Name: Pincolliders
   m_TagString: Untagged
@@ -54,7 +55,7 @@ GameObject:
   - component: {fileID: 4956318806589458}
   - component: {fileID: 50370990531509622}
   - component: {fileID: 61805699143874106}
-  - component: {fileID: 114427700527057454}
+  - component: {fileID: 114869572791132088}
   m_Layer: 8
   m_Name: Ring4
   m_TagString: Untagged
@@ -124,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486091415102430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.73, y: 4.2, z: 0}
+  m_LocalPosition: {x: -4.21, y: -2.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4412017197694178}
@@ -143,11 +144,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 8.225808
+  m_UseAutoMass: 0
+  m_Mass: 50
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 100
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 46a0c5d8a023c4b939c2f91f4d536a56, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -161,7 +162,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1486091415102430}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9ec751282181040e8af21d8d712f0f29, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -208,7 +209,19 @@ CapsuleCollider2D:
   m_Offset: {x: -1.3597425, y: 0.17515743}
   m_Size: {x: 1.2241313, y: 1.5338213}
   m_Direction: 0
---- !u!114 &114427700527057454
+--- !u!114 &114551432702799760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194796322362992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f413b19d7264144aca9c6dce2a3f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragObject: {fileID: 114869572791132088}
+--- !u!114 &114869572791132088
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -216,9 +229,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486091415102430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9df47797486464ba49a5667ae16ec424, type: 3}
+  m_Script: {fileID: 11500000, guid: cb13b5076737f4e8fa146ece2b7d9d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationLimit: 10
+  isTouchingPin: 0
 --- !u!212 &212179583065171028
 SpriteRenderer:
   m_ObjectHideFlags: 1

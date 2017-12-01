@@ -9,9 +9,10 @@ public class DraggableObject : MonoBehaviour
     private Vector3 offset; // vector between touchpoint/mouseclick to object center
     private Vector3 newGameObjectCenter; // new center of gameobject
     private Rigidbody2D rigidBody;
-    //  private bool isDragging = false;
+    private bool isDragging = false;
 
     #region Unity_Functions
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -30,28 +31,34 @@ public class DraggableObject : MonoBehaviour
     void OnMouseUp()
     {
         rigidBody.gravityScale = 1;
-        // isDragging = false;
+        isDragging = false;
     }
 
     void OnMouseDrag()
     {
-        // isDragging = true;
+        isDragging = true;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         newGameObjectCenter = touchPosition - offset;
 
-        transform.position = new Vector3(newGameObjectCenter.x, newGameObjectCenter.y, transform.position.z);
+        //transform.position = new Vector3(newGameObjectCenter.x, newGameObjectCenter.y, transform.position.z);
 
     }
 
-    //void FixedUpdate()
-    //{
-    //    if (!isDragging)
-    //        return;
+    void FixedUpdate()
+    {
+        if (!isDragging)
+            return;
+        var dist = newGameObjectCenter - transform.position;
+        if (dist.magnitude < 0.15f)
+        {
+            rigidBody.velocity = Vector2.zero;
+            return;
+        }
 
 
-    //    rigidBody.MovePosition(new Vector3(newGameObjectCenter.x, newGameObjectCenter.y, transform.position.z) * Time.deltaTime);
-
-    //}
+        var movement = new Vector2(dist.x, dist.y).normalized * Time.fixedDeltaTime * 15;
+        rigidBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + movement);
+    }
 
     #endregion Unity
 
