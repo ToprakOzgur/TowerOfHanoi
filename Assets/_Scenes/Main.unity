@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 1506367083}
   - component: {fileID: 1506367084}
   m_Layer: 0
-  m_Name: LogicController
+  m_Name: GameContoller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
