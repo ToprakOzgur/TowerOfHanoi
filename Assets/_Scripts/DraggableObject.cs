@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class DraggableObject : MonoBehaviour
@@ -11,6 +12,9 @@ public class DraggableObject : MonoBehaviour
     private Rigidbody2D rigidBody;
     private bool isDragging = false;
 
+    [SerializeField]
+    private int maxRotationLimitWhenDragging = 30;
+
     #region Unity_Functions
 
     private void Awake()
@@ -18,7 +22,7 @@ public class DraggableObject : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         gameObjectCenter = transform.position;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -28,39 +32,63 @@ public class DraggableObject : MonoBehaviour
 
     }
 
-    void OnMouseUp()
+    private void OnMouseUp()
     {
         rigidBody.gravityScale = 1;
         isDragging = false;
     }
 
-    void OnMouseDrag()
+    private void OnMouseDrag()
     {
         isDragging = true;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         newGameObjectCenter = touchPosition - offset;
-
-        //transform.position = new Vector3(newGameObjectCenter.x, newGameObjectCenter.y, transform.position.z);
-
+        LimitRotation(); //to prevent unrealistic behaviours when  rotating too much (only when dragging )
     }
 
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         if (!isDragging)
             return;
-        var dist = newGameObjectCenter - transform.position;
-        if (dist.magnitude < 0.15f)
+
+        var distance = newGameObjectCenter - transform.position; //distance vector to target. 
+        if (distance.magnitude < 0.1f) // stopping dragging here when rigidbody close enough to target to prevent  unrealistic movement of object.
         {
             rigidBody.velocity = Vector2.zero;
             return;
         }
 
-
-        var movement = new Vector2(dist.x, dist.y).normalized * Time.fixedDeltaTime * 15;
-        rigidBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + movement);
+        var movement = new Vector2(distance.x, distance.y).normalized
+                                                          * Time.fixedDeltaTime
+                                                          * RelativeMovementSpeed(distance);//movement Vector
+        rigidBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + movement); //moving rb to target
     }
 
-    #endregion Unity
+    #endregion
+
+
+    private float RelativeMovementSpeed(Vector3 distanceToTarget)
+    {
+        //This method is required for smooth movement of rigidbody.
+        //While speed is constant, vibrations (  fast cursor  movements) and discrete movement ( slow cursor movements)  happens
+        //So this method changes the speed according to the cursor movement(Bigger distanceToTarget means faster swipe movement ). 
+
+        var distanceMagnitude = distanceToTarget.magnitude;
+        var minSpeed = 5.0f; //speeds at slower movements
+        var maxSpeed = 75.0f; //speeds at faster movements
+        var speedMultiplier = 3;
+
+        return Mathf.Clamp(Mathf.Pow(distanceMagnitude, speedMultiplier), minSpeed, maxSpeed);
+
+    }
+
+    private void LimitRotation()
+    {
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x,
+                                           transform.eulerAngles.y,
+                                            Utility.ClampRotation(transform.eulerAngles.z, maxRotationLimitWhenDragging));
+    }
 
 
 }

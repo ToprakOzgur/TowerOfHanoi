@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+//I try to avoid using "static" keyword  in projects. Because it can be hard to manage dependencies when project is getting bigger.
 public static class Utility
 {
 
@@ -13,6 +12,8 @@ public static class Utility
     /// <param name="rotationLimit">Rotation limit.</param>
     public static float ClampRotation(float currentAngle, float rotationLimit)
     {
+
+
         if (currentAngle < 0) //keeps negative angles between 0..360
             currentAngle += 360;
 

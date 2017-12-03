@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 50654720935427172}
   - component: {fileID: 61261813616051906}
   - component: {fileID: 114772680503606792}
+  - component: {fileID: 114289085210790612}
   m_Layer: 8
   m_Name: Ring1
   m_TagString: Untagged
@@ -71,7 +72,6 @@ GameObject:
   - component: {fileID: 4312941697064246}
   - component: {fileID: 70822437496749176}
   - component: {fileID: 70090771405461894}
-  - component: {fileID: 114314559738642540}
   m_Layer: 10
   m_Name: Pincolliders
   m_TagString: Untagged
@@ -209,25 +209,24 @@ CapsuleCollider2D:
   m_Offset: {x: 1.0266441, y: 0.12048972}
   m_Size: {x: 0.396806, y: 1.401633}
   m_Direction: 0
---- !u!114 &114314559738642540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1715589346368904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f413b19d7264144aca9c6dce2a3f07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragObject: {fileID: 114772680503606792}
---- !u!114 &114772680503606792
+--- !u!114 &114289085210790612
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305725545767706}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df47797486464ba49a5667ae16ec424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114772680503606792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1305725545767706}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb13b5076737f4e8fa146ece2b7d9d4b, type: 3}
   m_Name: 
