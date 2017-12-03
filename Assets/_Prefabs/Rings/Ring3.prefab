@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4807577399900824}
   - component: {fileID: 50175464068703638}
   - component: {fileID: 61044115971823204}
-  - component: {fileID: 114293407766407990}
+  - component: {fileID: 114531038799701108}
   m_Layer: 8
   m_Name: Ring3
   m_TagString: Untagged
@@ -71,7 +71,6 @@ GameObject:
   - component: {fileID: 4873772392468868}
   - component: {fileID: 70421551364248082}
   - component: {fileID: 70352051449349424}
-  - component: {fileID: 114570841158264978}
   m_Layer: 10
   m_Name: Pincolliders
   m_TagString: Untagged
@@ -144,11 +143,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 40
+  m_UseAutoMass: 1
+  m_Mass: 6.9595666
   m_LinearDrag: 0
   m_AngularDrag: 100
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 46a0c5d8a023c4b939c2f91f4d536a56, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -162,7 +161,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1926627522414284}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9ec751282181040e8af21d8d712f0f29, type: 2}
+  m_Material: {fileID: 6200000, guid: 46a0c5d8a023c4b939c2f91f4d536a56, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -209,7 +208,7 @@ CapsuleCollider2D:
   m_Offset: {x: 1.2347803, y: 0.15624893}
   m_Size: {x: 0.87226677, y: 1.5410054}
   m_Direction: 0
---- !u!114 &114293407766407990
+--- !u!114 &114531038799701108
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -217,23 +216,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1926627522414284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb13b5076737f4e8fa146ece2b7d9d4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9df47797486464ba49a5667ae16ec424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationLimit: 10
-  isTouchingPin: 0
---- !u!114 &114570841158264978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1959061197371528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f413b19d7264144aca9c6dce2a3f07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragObject: {fileID: 114293407766407990}
+  maxRotationLimitWhenDragging: 30
 --- !u!212 &212189999906785360
 SpriteRenderer:
   m_ObjectHideFlags: 1
