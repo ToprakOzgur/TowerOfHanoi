@@ -7,21 +7,40 @@ public class Game
 {
     public Logic logic;
     public Player player;//more playes can be added if game extends. when become an  online game etc...
-    private GameController gameContoller;
+    private GameLogicController gameContoller;
     private List<Pin> pins = new List<Pin>();
 
-    public Game(GameController gameContoller, int pinCount, int startingPinNumber, int ringCount) //constructor
+    public Game(GameLogicController gameContoller, int pinCount, int startingPinNumber, int ringCount) //constructor
     {
         this.gameContoller = gameContoller;
         logic = new Logic();
         player = new Player();
 
-        var startingPinSafe = Mathf.Clamp(startingPinNumber, 0, pinCount - 1);//clamping startingpinnumber to prevent wrong entries
+        var startingPinSafe = Mathf.Clamp(startingPinNumber, 1, pinCount);//clamping startingpinnumber to prevent wrong entries
         for (int i = 0; i < pinCount; i++)
         {
-            pins.Add(new Pin(ringCount, i == startingPinSafe)); //makes new rings and add to list,if pin has rings at start makes variable true
+            pins.Add(new Pin(ringCount, i == startingPinSafe - 1)); //makes new rings and add to list,if pin has rings at start makes variable true
         }
 
+    }
+
+
+    public void AddRingToPin(int ringNumber, int pinNumber)
+    {
+        foreach (var pin in pins)
+        {
+            var tempRing = pin.rings.First(x => x.sizeID == ringNumber); //finds the rings old location
+
+            if (tempRing != null)
+            {
+                pin.rings.Remove(tempRing); //removes ring from old pin
+                pins[pinNumber - 1].rings.Add(tempRing); //add ring to new pin
+                break;
+            }
+        }
+        Debug.Log(pins[0].rings.Count());
+        Debug.Log(pins[1].rings.Count());
+        Debug.Log(pins[2].rings.Count());
     }
 
     public void TurnEnded()
@@ -50,4 +69,5 @@ public class Game
 
         gameContoller.NextTurn();
     }
+
 }

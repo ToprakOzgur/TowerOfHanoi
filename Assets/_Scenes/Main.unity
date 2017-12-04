@@ -155,8 +155,13 @@ Prefab:
       propertyPath: m_Name
       value: Pin3
       objectReference: {fileID: 0}
+    - target: {fileID: 1404374503079242, guid: 30b3459941efe4152920256a80270bad, type: 2}
+      propertyPath: m_TagString
+      value: pin3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 114953956924949144, guid: 30b3459941efe4152920256a80270bad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 30b3459941efe4152920256a80270bad, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &19960708
@@ -198,6 +203,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1486091415102430, guid: 035f465ef10d0428ca0d476ab0192673, type: 2}
+      propertyPath: m_Name
+      value: Ring1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949397650405362, guid: 035f465ef10d0428ca0d476ab0192673, type: 2}
+      propertyPath: m_Name
+      value: Ring_1_Front
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140741830952584, guid: 035f465ef10d0428ca0d476ab0192673, type: 2}
+      propertyPath: m_Name
+      value: Ring_1_Back
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 035f465ef10d0428ca0d476ab0192673, type: 2}
   m_IsPrefabParent: 0
@@ -214,7 +231,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4306709279493858, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 8.68
+      value: 8.9
       objectReference: {fileID: 0}
     - target: {fileID: 4306709279493858, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -239,6 +256,18 @@ Prefab:
     - target: {fileID: 4306709279493858, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
       propertyPath: m_RootOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961446105805250, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
+      propertyPath: m_Name
+      value: Ring3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163494114892436, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
+      propertyPath: m_Name
+      value: Ring_3_Front
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616256076917468, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
+      propertyPath: m_Name
+      value: Ring_3_Back
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37f171b5096664b108bfe7d8caea802c, type: 2}
@@ -458,7 +487,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4776239477524216, guid: 0ab252f100e6f44e388980174d559259, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 13.26
+      value: 18.3
       objectReference: {fileID: 0}
     - target: {fileID: 4776239477524216, guid: 0ab252f100e6f44e388980174d559259, type: 2}
       propertyPath: m_LocalPosition.z
@@ -483,6 +512,18 @@ Prefab:
     - target: {fileID: 4776239477524216, guid: 0ab252f100e6f44e388980174d559259, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305725545767706, guid: 0ab252f100e6f44e388980174d559259, type: 2}
+      propertyPath: m_Name
+      value: Ring4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075924431723702, guid: 0ab252f100e6f44e388980174d559259, type: 2}
+      propertyPath: m_Name
+      value: Ring_4_Front
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585964665493790, guid: 0ab252f100e6f44e388980174d559259, type: 2}
+      propertyPath: m_Name
+      value: Ring_4_Back
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ab252f100e6f44e388980174d559259, type: 2}
@@ -518,6 +559,26 @@ Transform:
   m_Father: {fileID: 1381704727}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &861094696 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1486091415102430, guid: 035f465ef10d0428ca0d476ab0192673,
+    type: 2}
+  m_PrefabInternal: {fileID: 19960708}
+--- !u!114 &861094700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 861094696}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c79204b6cbd4151af3edcfd269df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &1021058382 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4039496814653428, guid: 30b3459941efe4152920256a80270bad,
@@ -639,8 +700,13 @@ Prefab:
       propertyPath: m_Name
       value: Pin2
       objectReference: {fileID: 0}
+    - target: {fileID: 1404374503079242, guid: 30b3459941efe4152920256a80270bad, type: 2}
+      propertyPath: m_TagString
+      value: pin2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 114953956924949144, guid: 30b3459941efe4152920256a80270bad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 30b3459941efe4152920256a80270bad, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1144660441
@@ -993,6 +1059,60 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1307125645 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1404374503079242, guid: 30b3459941efe4152920256a80270bad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1072240176}
+--- !u!114 &1307125646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307125645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bfdba2902a34bc490e780c89c8735d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinID: 2
+--- !u!1 &1346377200 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1926627522414284, guid: 46cadd7aa9356413abfc8524e6465db5,
+    type: 2}
+  m_PrefabInternal: {fileID: 2143603608}
+--- !u!114 &1346377204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1346377200}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c79204b6cbd4151af3edcfd269df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 2
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!1 &1350514858 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1404374503079242, guid: 30b3459941efe4152920256a80270bad,
+    type: 2}
+  m_PrefabInternal: {fileID: 17411139}
+--- !u!114 &1350514859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1350514858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bfdba2902a34bc490e780c89c8735d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pinID: 3
 --- !u!1 &1381704726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1313,7 @@ GameObject:
   - component: {fileID: 1506367083}
   - component: {fileID: 1506367084}
   m_Layer: 0
-  m_Name: GameContoller
+  m_Name: GameLogicContoller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,9 +1340,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506367082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5545ec41afec64aae9eb14460251fcc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 67e2bf9d485224a48a11cd3564e107c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ringViews:
+  - {fileID: 861094700}
+  - {fileID: 1346377204}
+  - {fileID: 2019181969}
+  - {fileID: 1729482194}
   pinCount: 3
   startingPinNumber: 1
   ringCount: 4
@@ -1309,6 +1434,26 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1729482190 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1305725545767706, guid: 0ab252f100e6f44e388980174d559259,
+    type: 2}
+  m_PrefabInternal: {fileID: 541836390}
+--- !u!114 &1729482194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729482190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c79204b6cbd4151af3edcfd269df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 4
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1751353882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1661,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 29.723076, y: 7.5761986}
   m_EdgeRadius: 0
+--- !u!1 &2019181965 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1961446105805250, guid: 37f171b5096664b108bfe7d8caea802c,
+    type: 2}
+  m_PrefabInternal: {fileID: 44305502}
+--- !u!114 &2019181969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019181965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c79204b6cbd4151af3edcfd269df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 3
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1001 &2143603608
 Prefab:
   m_ObjectHideFlags: 0
@@ -1529,7 +1694,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4807577399900824, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.15
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4807577399900824, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1554,6 +1719,18 @@ Prefab:
     - target: {fileID: 4807577399900824, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
       propertyPath: m_RootOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926627522414284, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
+      propertyPath: m_Name
+      value: Ring2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905345822431656, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
+      propertyPath: m_Name
+      value: Ring_2_Front
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340963534223654, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
+      propertyPath: m_Name
+      value: Ring_2_Back
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46cadd7aa9356413abfc8524e6465db5, type: 2}
