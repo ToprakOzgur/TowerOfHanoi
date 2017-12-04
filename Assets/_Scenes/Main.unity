@@ -1223,6 +1223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5545ec41afec64aae9eb14460251fcc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pinCount: 3
+  startingPinNumber: 1
+  ringCount: 4
 --- !u!4 &1534227277 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4956318806589458, guid: 035f465ef10d0428ca0d476ab0192673,
