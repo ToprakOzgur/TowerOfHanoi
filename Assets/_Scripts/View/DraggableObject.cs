@@ -15,6 +15,9 @@ public class DraggableObject : MonoBehaviour
     [SerializeField]
     private int maxRotationLimitWhenDragging = 30;
 
+    [HideInInspector]
+    public bool isDRaggable = false;
+
     #region Unity_Functions
 
     private void Awake()
@@ -24,6 +27,8 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!isDRaggable)
+            return;
         gameObjectCenter = transform.position;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset = touchPosition - gameObjectCenter;
@@ -40,6 +45,8 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (!isDRaggable)
+            return;
         isDragging = true;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         newGameObjectCenter = touchPosition - offset;
@@ -51,7 +58,8 @@ public class DraggableObject : MonoBehaviour
     {
         if (!isDragging)
             return;
-
+        if (!isDRaggable)
+            return;
         var distance = newGameObjectCenter - transform.position; //distance vector to target. 
         if (distance.magnitude < 0.1f) // stopping dragging here when rigidbody close enough to target to prevent  unrealistic movement of object.
         {

@@ -19,6 +19,7 @@ public class Pin
                 rings.Add(new Ring(maxRingCount - i)); //first ring is bigger
             }
         }
+
     }
 
 

@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class GameLogicController : MonoBehaviour
 {
@@ -27,27 +28,34 @@ public class GameLogicController : MonoBehaviour
         {
             ring.OnRingIsOnThePinEvent += RingIsOnThePin;
         }
+
+        //enables draggable feature of top rings at each pin
+        MakesOnlyTopRingsDraggable();
+
     }
 
     public void GameWon()
     {
         //Game Win actions
-
+        Debug.Log("GameWon");
     }
 
     public void TurnFailed()
     {
         //Turn Failed actions
+        Debug.Log("TurnFailed");
     }
 
     public void TurnSuccess()
     {
         //Turn success actions
+        Debug.Log("TurnSuccess");
+        NextTurn();
     }
 
     public void NextTurn()
     {
-
+        MakesOnlyTopRingsDraggable();
     }
     private void RingIsOnThePin(RaycastHit2D raycastResult, int ringNumber)
     {
@@ -58,5 +66,23 @@ public class GameLogicController : MonoBehaviour
             game.AddRingToPin(ringNumber, ring.pinID);
     }
 
+    //enables draggable feature of top rings at each pin
+    private void MakesOnlyTopRingsDraggable()
+    {
+        var draggableRings = game.GetDraggableRings();
 
+        foreach (var ring in ringViews)
+        {
+            ring.DraggableObject.isDRaggable = false;
+        }
+
+        foreach (var number in draggableRings)
+        {
+            var ring = ringViews.First(x => x.ringNumber == number);
+            //ring.DraggableObject.isDRaggable = true;
+            // ring.StartLauncRaycastsCoroutine();
+        }
+
+
+    }
 }

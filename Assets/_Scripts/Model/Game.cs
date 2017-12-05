@@ -41,6 +41,7 @@ public class Game
         Debug.Log(pins[0].rings.Count());
         Debug.Log(pins[1].rings.Count());
         Debug.Log(pins[2].rings.Count());
+        TurnEnded();
     }
 
     public void TurnEnded()
@@ -70,4 +71,19 @@ public class Game
         gameContoller.NextTurn();
     }
 
+    //only top ring is draggable if pin has more than 1 ring
+    public List<int> GetDraggableRings()
+    {
+        List<int> draggableRings = new List<int>();
+
+        foreach (var pin in pins)
+        {
+            if (pin.rings.Count > 1)
+            {
+                var draggableRingSizeID = pin.rings[0].sizeID;
+                draggableRings.Add(draggableRingSizeID);
+            }
+        }
+        return draggableRings;
+    }
 }
