@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 50934879551183002}
   - component: {fileID: 61134138431700552}
   - component: {fileID: 114923222840209826}
+  - component: {fileID: 114615254186121994}
   m_Layer: 8
   m_Name: Ring2
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961446105805250}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.12, y: 8.68, z: 0}
+  m_LocalPosition: {x: -4.12, y: 8.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4151482216642474}
@@ -208,6 +209,21 @@ CapsuleCollider2D:
   m_Offset: {x: 1.085042, y: 0.10729599}
   m_Size: {x: 0.64190006, y: 1.4430995}
   m_Direction: 0
+--- !u!114 &114615254186121994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961446105805250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c79204b6cbd4151af3edcfd269df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 2
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &114923222840209826
 MonoBehaviour:
   m_ObjectHideFlags: 1

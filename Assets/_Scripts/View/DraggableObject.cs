@@ -15,9 +15,17 @@ public class DraggableObject : MonoBehaviour
     [SerializeField]
     private int maxRotationLimitWhenDragging = 30;
 
-    [HideInInspector]
-    public bool isDRaggable = false;
+    private RingViewGameobject ring;
+    public RingViewGameobject Ring
+    {
+        get
+        {
+            if (ring == null)
+                ring = GetComponent<RingViewGameobject>();
 
+            return ring;
+        }
+    }
     #region Unity_Functions
 
     private void Awake()
@@ -27,25 +35,30 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!isDRaggable)
+        if (Ring.currentState != Ring.draggableState)
             return;
         gameObjectCenter = transform.position;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset = touchPosition - gameObjectCenter;
 
         rigidBody.gravityScale = 0;
-
     }
 
     private void OnMouseUp()
     {
+        if (Ring.currentState != Ring.draggableState)
+            return;
         rigidBody.gravityScale = 1;
         isDragging = false;
+
+        //ring is dropped.Check if it is on a pin;
+        if (Ring != null)
+            Ring.currentState.ToControlPinState();
     }
 
     private void OnMouseDrag()
     {
-        if (!isDRaggable)
+        if (Ring.currentState != Ring.draggableState)
             return;
         isDragging = true;
         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -58,7 +71,7 @@ public class DraggableObject : MonoBehaviour
     {
         if (!isDragging)
             return;
-        if (!isDRaggable)
+        if (Ring.currentState != Ring.draggableState)
             return;
         var distance = newGameObjectCenter - transform.position; //distance vector to target. 
         if (distance.magnitude < 0.1f) // stopping dragging here when rigidbody close enough to target to prevent  unrealistic movement of object.

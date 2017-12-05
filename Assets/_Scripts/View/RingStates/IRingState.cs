@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+// FOR STATE DESIGN PATTERN 
 public interface IRingState
 {
 
@@ -12,5 +13,5 @@ public interface IRingState
 
     void ToReturnToOldPinState();
 
-
+    void ToControlPinState();
 }

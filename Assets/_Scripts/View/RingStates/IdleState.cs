@@ -21,7 +21,6 @@ public class IdleState : IRingState
     public void ToDraggableState()
     {
         ring.currentState = ring.draggableState;
-        ring.DraggableObject.isDRaggable = true;
     }
 
     public void ToReturnToOldPinState()
@@ -34,5 +33,8 @@ public class IdleState : IRingState
         Debug.Log("Already in IdleState");
     }
 
-
+    public void ToControlPinState()
+    {
+        Debug.LogWarning("transition is not possible Check Again !!!");
+    }
 }

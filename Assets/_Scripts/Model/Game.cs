@@ -25,29 +25,54 @@ public class Game
     }
 
 
+    //public void AddRingToPin(int ringNumber, int pinNumber)
+    //{
+
+    //    foreach (var pin in pins)
+    //    {
+    //        var tempRing = pin.rings.First(x => x.sizeID == ringNumber); //finds the rings old location
+    //        if (tempRing != null)
+    //        {
+    //            pin.rings.Remove(tempRing); //removes ring from old pin
+    //            pins[pinNumber - 1].rings.Add(tempRing); //add ring to new pin
+    //            return;
+    //        }
+    //    }
+    //    Debug.Log(pins[0].rings.Count());
+    //    Debug.Log(pins[1].rings.Count());
+    //    Debug.Log(pins[2].rings.Count());
+
+    //}
+
+
     public void AddRingToPin(int ringNumber, int pinNumber)
     {
+
         foreach (var pin in pins)
         {
-            var tempRing = pin.rings.First(x => x.sizeID == ringNumber); //finds the rings old location
 
-            if (tempRing != null)
+            foreach (var ring in pin.rings)
             {
-                pin.rings.Remove(tempRing); //removes ring from old pin
-                pins[pinNumber - 1].rings.Add(tempRing); //add ring to new pin
-                break;
+                if (ring.sizeID == ringNumber)
+                {
+
+                    pin.rings.Remove(ring);
+                    pins[pinNumber - 1].rings.Add(ring);
+
+                    return;
+                }
             }
+
         }
-        Debug.Log(pins[0].rings.Count());
-        Debug.Log(pins[1].rings.Count());
-        Debug.Log(pins[2].rings.Count());
-        TurnEnded();
+
+
     }
 
     public void TurnEnded()
     {
         var results = logic.CheckRules(pins);
         TurnEndActions(results);
+
     }
 
     public void TurnEndActions(List<RuleResult> ruleResults)
@@ -78,9 +103,9 @@ public class Game
 
         foreach (var pin in pins)
         {
-            if (pin.rings.Count > 1)
+            if (pin.rings.Count > 0)
             {
-                var draggableRingSizeID = pin.rings[0].sizeID;
+                var draggableRingSizeID = pin.rings[pin.rings.Count - 1].sizeID;
                 draggableRings.Add(draggableRingSizeID);
             }
         }

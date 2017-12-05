@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 50370990531509622}
   - component: {fileID: 61805699143874106}
   - component: {fileID: 114401250505237654}
+  - component: {fileID: 114159350569476180}
   m_Layer: 8
   m_Name: Ring4
   m_TagString: Untagged
@@ -208,6 +209,21 @@ CapsuleCollider2D:
   m_Offset: {x: -1.3597425, y: 0.17515743}
   m_Size: {x: 1.2241313, y: 1.5338213}
   m_Direction: 0
+--- !u!114 &114159350569476180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486091415102430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c79204b6cbd4151af3edcfd269df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringNumber: 4
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &114401250505237654
 MonoBehaviour:
   m_ObjectHideFlags: 1

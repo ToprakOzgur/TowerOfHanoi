@@ -13,7 +13,6 @@ public class SmallOverBigRule : IRule
                     return new RuleResult(false, RuleResultIdentifiers.SmallOverBigRuleResultIdentifier);
             }
         }
-
         return new RuleResult(true, RuleResultIdentifiers.SmallOverBigRuleResultIdentifier);
     }
 }

@@ -44,6 +44,7 @@ public class GameLogicController : MonoBehaviour
     {
         //Turn Failed actions
         Debug.Log("TurnFailed");
+        NextTurn();
     }
 
     public void TurnSuccess()
@@ -59,11 +60,12 @@ public class GameLogicController : MonoBehaviour
     }
     private void RingIsOnThePin(RaycastHit2D raycastResult, int ringNumber)
     {
-        Debug.Log(raycastResult.transform.gameObject.name);
+        Debug.LogWarning(raycastResult.transform.gameObject.name);
 
         var ring = raycastResult.collider.gameObject.GetComponent<PinViewGameobject>();
         if (ring != null)
             game.AddRingToPin(ringNumber, ring.pinID);
+        game.TurnEnded();
     }
 
     //enables draggable feature of top rings at each pin
@@ -73,14 +75,14 @@ public class GameLogicController : MonoBehaviour
 
         foreach (var ring in ringViews)
         {
-            ring.DraggableObject.isDRaggable = false;
+            ring.currentState = ring.idleState;
         }
 
         foreach (var number in draggableRings)
         {
             var ring = ringViews.First(x => x.ringNumber == number);
-            //ring.DraggableObject.isDRaggable = true;
-            // ring.StartLauncRaycastsCoroutine();
+            ring.currentState = ring.draggableState;
+
         }
 
 
