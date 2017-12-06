@@ -14,4 +14,7 @@ public interface IRingState
     void ToReturnToOldPinState();
 
     void ToControlPinState();
+
+    void OnCollisionStay2D(Collision2D collision);
+
 }

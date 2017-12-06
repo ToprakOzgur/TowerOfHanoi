@@ -13,22 +13,11 @@ public class RingViewGameobject : MonoBehaviour
     [HideInInspector] public ReturnToOldPinState returnToOldPinState;
     [HideInInspector] public ControlPinState controlPinState;
 
+    [HideInInspector] public int currenPin = 1;
+
     public int ringNumber;
     public event Action<RaycastHit2D, int> OnRingIsOnThePinEvent; //Event used for VIEW-TO-CONTROLLER comminication for MVC design pattern
     public LayerMask mask;
-
-    private DraggableObject draggableObject;  //assigning variables at Start or Awake function with "GetComponent" is generally used But Sometimes scipts exeecutation order can cause problems.So I prefer to use GetComponent in  properties.
-    public DraggableObject DraggableObject
-    {
-        get
-        {
-            if (draggableObject == null)
-                draggableObject = GetComponent<DraggableObject>();
-
-            return draggableObject;
-        }
-    }
-
 
     private void Awake()
     {
@@ -41,20 +30,24 @@ public class RingViewGameobject : MonoBehaviour
 
     private void Start()
     {
-        //TODO: HardCoded.Fix it
+
         if (ringNumber == 1)
         {
             currentState = draggableState;
             currentState.ToDraggableState();
         }
         else currentState = idleState;
-
     }
 
     private void Update()
     {
         currentState.UpdateState();
-        // Debug.Log("rin: " + ringNumber + " state: " + currentState);
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        currentState.OnCollisionStay2D(collision);
     }
 
     public void InvokeOnRingIsOnThePinEvent(RaycastHit2D result)
@@ -63,4 +56,48 @@ public class RingViewGameobject : MonoBehaviour
             OnRingIsOnThePinEvent(result, ringNumber);
     }
 
+
+
+
+    #region ReturnToOldPin State functions.
+    //States classes are not MonoBehaviour. So, to be able to use Coroutines i called  from here. 
+    public void MoveTo(Vector3 position, float duration)
+    {
+
+        StartCoroutine(Move(position, duration));
+    }
+
+    IEnumerator Move(Vector3 targetPosition, float duration)
+    {
+
+        var colliders = gameObject.GetComponentsInChildren<Collider2D>();
+        foreach (var col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        Vector3 startPosition = transform.position;
+        Quaternion startRotation = transform.rotation;
+
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / duration;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, Utility.BounceEaseOut(t));
+            transform.rotation = Quaternion.Lerp(startRotation, Quaternion.identity, t);
+            yield return null;
+        }
+
+        foreach (var col in colliders)
+        {
+            col.enabled = true;
+        }
+
+        currentState = draggableState;
+    }
+
+    #endregion
 }
+
+
+

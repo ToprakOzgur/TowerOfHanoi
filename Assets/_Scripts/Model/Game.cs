@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Game
 {
-    public Logic logic;
-    public Player player;//more playes can be added if game extends. when become an  online game etc...
     private GameLogicController gameContoller;
     private List<Pin> pins = new List<Pin>();
+
+    public Logic logic;
+    public Player player;//more playes can be added if game extends. when become an  online game etc...
 
     public Game(GameLogicController gameContoller, int pinCount, int startingPinNumber, int ringCount) //constructor
     {
@@ -19,63 +20,35 @@ public class Game
         var startingPinSafe = Mathf.Clamp(startingPinNumber, 1, pinCount);//clamping startingpinnumber to prevent wrong entries
         for (int i = 0; i < pinCount; i++)
         {
-            pins.Add(new Pin(ringCount, i == startingPinSafe - 1)); //makes new rings and add to list,if pin has rings at start makes variable true
+            pins.Add(new Pin(ringCount, i == startingPinSafe - 1)); //makes new rings and add to list,
         }
 
     }
-
-
-    //public void AddRingToPin(int ringNumber, int pinNumber)
-    //{
-
-    //    foreach (var pin in pins)
-    //    {
-    //        var tempRing = pin.rings.First(x => x.sizeID == ringNumber); //finds the rings old location
-    //        if (tempRing != null)
-    //        {
-    //            pin.rings.Remove(tempRing); //removes ring from old pin
-    //            pins[pinNumber - 1].rings.Add(tempRing); //add ring to new pin
-    //            return;
-    //        }
-    //    }
-    //    Debug.Log(pins[0].rings.Count());
-    //    Debug.Log(pins[1].rings.Count());
-    //    Debug.Log(pins[2].rings.Count());
-
-    //}
 
 
     public void AddRingToPin(int ringNumber, int pinNumber)
     {
-
         foreach (var pin in pins)
         {
-
             foreach (var ring in pin.rings)
             {
-                if (ring.sizeID == ringNumber)
+                if (ring.sizeID == ringNumber) //finds the rings old pin
                 {
-
-                    pin.rings.Remove(ring);
-                    pins[pinNumber - 1].rings.Add(ring);
-
+                    pin.rings.Remove(ring); //removes ring from old pin
+                    pins[pinNumber - 1].rings.Add(ring); //adds ring to new pin
                     return;
                 }
             }
-
         }
-
-
     }
 
-    public void TurnEnded()
+    public void CheckRules()
     {
         var results = logic.CheckRules(pins);
-        TurnEndActions(results);
-
+        RuleResultActions(results);
     }
 
-    public void TurnEndActions(List<RuleResult> ruleResults)
+    public void RuleResultActions(List<RuleResult> ruleResults)
     {
         if (ruleResults.Any(x => x.identifier == RuleResultIdentifiers.SmallOverBigRuleResultIdentifier && !x.result)) //there is SmallOverBigRule and result is false
         {
@@ -92,8 +65,6 @@ public class Game
             gameContoller.GameWon();
             return;
         }
-
-        gameContoller.NextTurn();
     }
 
     //only top ring is draggable if pin has more than 1 ring

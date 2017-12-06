@@ -37,4 +37,9 @@ public class IdleState : IRingState
     {
         Debug.LogWarning("transition is not possible Check Again !!!");
     }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+
+    }
 }

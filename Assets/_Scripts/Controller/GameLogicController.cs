@@ -8,67 +8,67 @@ public class GameLogicController : MonoBehaviour
     private Game game;
 
     [SerializeField] RingViewGameobject[] ringViews;
+    [SerializeField] Transform[] pinPositions;
+    [SerializeField] GameObject gameWinText;
 
-    [Header("GAME/LEVEL SETTINGS ")]
-    [SerializeField]
-    private int pinCount;
-
-    [SerializeField]
-    private int startingPinNumber;
-
-    [SerializeField]
-    private int ringCount;
+    private int pinCount = 3;
+    private int startingPinNumber = 1;
+    private int ringCount = 4;
 
     void Start()
     {
         game = new Game(this, pinCount, startingPinNumber, ringCount);
 
-        //Registering to  ring events (MVC controller-view comminication
+        //Registering to  ring events (MVC controller-To-View comminication)
         foreach (var ring in ringViews)
         {
             ring.OnRingIsOnThePinEvent += RingIsOnThePin;
         }
-
-        //enables draggable feature of top rings at each pin
-        MakesOnlyTopRingsDraggable();
-
     }
 
     public void GameWon()
     {
-        //Game Win actions
         Debug.Log("GameWon");
+        gameWinText.SetActive(true);
     }
+
+    private int lastPlayedRingNumber;
 
     public void TurnFailed()
     {
-        //Turn Failed actions
         Debug.Log("TurnFailed");
-        NextTurn();
+
+        var ring = ringViews.First(x => x.ringNumber == lastPlayedRingNumber); // finds the failed ring
+        game.AddRingToPin(lastPlayedRingNumber, ring.currenPin); //put the failed ring to old pin at Model
+
+        ring.returnToOldPinState.oldPinTopPosition = pinPositions[ring.currenPin - 1]; //assign falied ring  where to go back
+        ring.currentState = ring.returnToOldPinState; //change failed rings state to go back 
+
     }
+
+    private int lastPlayedPinNumber;
 
     public void TurnSuccess()
     {
-        //Turn success actions
         Debug.Log("TurnSuccess");
-        NextTurn();
+        var ring = ringViews.First(x => x.ringNumber == lastPlayedRingNumber); //gets the succesfully moved ring
+        ring.currenPin = lastPlayedPinNumber; //updates  the moved rings curren Pin
+        MakesOnlyTopRingsDraggable();// makes the top rings draggable
     }
 
-    public void NextTurn()
-    {
-        MakesOnlyTopRingsDraggable();
-    }
     private void RingIsOnThePin(RaycastHit2D raycastResult, int ringNumber)
     {
-        Debug.LogWarning(raycastResult.transform.gameObject.name);
+        lastPlayedRingNumber = ringNumber;
+        var pin = raycastResult.collider.gameObject.GetComponent<PinViewGameobject>();
 
-        var ring = raycastResult.collider.gameObject.GetComponent<PinViewGameobject>();
-        if (ring != null)
-            game.AddRingToPin(ringNumber, ring.pinID);
-        game.TurnEnded();
+        if (pin != null)
+            game.AddRingToPin(ringNumber, pin.pinID);
+        lastPlayedPinNumber = pin.pinID;
+
+        game.CheckRules();
     }
 
-    //enables draggable feature of top rings at each pin
+    //enables draggable feature of the top rings at each pin
     private void MakesOnlyTopRingsDraggable()
     {
         var draggableRings = game.GetDraggableRings();
@@ -84,7 +84,8 @@ public class GameLogicController : MonoBehaviour
             ring.currentState = ring.draggableState;
 
         }
-
-
     }
+
 }
+
+

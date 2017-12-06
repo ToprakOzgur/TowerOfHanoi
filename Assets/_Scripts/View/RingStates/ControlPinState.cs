@@ -18,7 +18,7 @@ public class ControlPinState : IRingState
 
     public void UpdateState()
     {
-        CheckIfRingIsOnTheRing();
+        CheckIfRingIsOnThePin();
     }
 
     public void ToDraggableState()
@@ -42,7 +42,11 @@ public class ControlPinState : IRingState
         Debug.Log("Already in ControlState");
     }
 
-    private void CheckIfRingIsOnTheRing()
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+
+    }
+    private void CheckIfRingIsOnThePin()
     {
         //if right and left raycast hits same pin,ting is on the pin
         hitRight = Physics2D.Raycast(ring.transform.position, Vector2.right, 1, ring.mask);
@@ -50,7 +54,7 @@ public class ControlPinState : IRingState
         // Debug.DrawRay(ring.transform.position, Vector2.left, Color.red);
         //Debug.DrawRay(ring.transform.position, Vector2.right, Color.red);
 
-        if (hitRight.collider != null && hitRight.collider != null && hitRight.collider.tag == hitLeft.collider.tag)
+        if (hitRight.collider != null && hitLeft.collider != null && hitRight.collider.tag == hitLeft.collider.tag)
         {
             //  ToIdleState();
             ring.InvokeOnRingIsOnThePinEvent(hitRight);

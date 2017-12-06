@@ -9,8 +9,8 @@ public class DraggableObject : MonoBehaviour
     private Vector3 touchPosition; //touch or click position
     private Vector3 offset; // vector between touchpoint/mouseclick to object center
     private Vector3 newGameObjectCenter; // new center of gameobject
-    private Rigidbody2D rigidBody;
     private bool isDragging = false;
+    private Rigidbody2D rigidBody;
 
     [SerializeField]
     private int maxRotationLimitWhenDragging = 30;
