@@ -6,8 +6,7 @@ public class DraggableState : IRingState
 {
     private readonly RingViewGameobject ring;
 
-    //TODO: delete
-    public bool isThereAnotherRingOrPlateBelow = false;// pushing a rigibody towards another static rigidbody (below rings and red plate) causes unwanted behaviours like vibrating,jumping. This variable is used to solve this isue
+
 
     //Constructor
     public DraggableState(RingViewGameobject ringViewGameobject)
@@ -22,7 +21,7 @@ public class DraggableState : IRingState
 
     public void ToDraggableState()
     {
-
+        ring.currentState = ring.draggableState;
     }
 
     public void ToReturnToOldPinState()
@@ -33,6 +32,7 @@ public class DraggableState : IRingState
 
     public void ToIdleState()
     {
+        ring.GetComponent<Rigidbody2D>().isKinematic = true;
         ring.currentState = ring.idleState;
 
     }
@@ -49,12 +49,7 @@ public class DraggableState : IRingState
 
     private void CheckIfRingIsOnTheRing()
     {
-        //if right and left raycast hits same pin,ring is on the pin
-        //  var hitDown = Physics2D.Raycast(ring.transform.position, Vector2.down, 1,);
-        //Debug.DrawRay(ring.transform.position, Vector2.down, Color.red);
-        //Debug.Log(hitDown.transform.gameObject.name);
-        //if (hitDown.collider.CompareTag("Ring") || hitDown.collider.CompareTag("Plate"))
-        //Debug.Log("engel");
+
     }
 
 }

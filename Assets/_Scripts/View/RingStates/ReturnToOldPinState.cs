@@ -5,8 +5,6 @@ using UnityEngine;
 public class ReturnToOldPinState : IRingState
 {
     private readonly RingViewGameobject ring;
-    public Transform oldPinTopPosition;
-
 
     //Constructor
     public ReturnToOldPinState(RingViewGameobject ringViewGameobject)
@@ -26,17 +24,18 @@ public class ReturnToOldPinState : IRingState
 
     public void ToReturnToOldPinState()
     {
-        Debug.Log("Already in ReturnToOldPinState");
+
     }
 
     public void ToIdleState()
     {
         ring.currentState = ring.idleState;
+        ring.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     public void ToControlPinState()
     {
-        Debug.LogWarning("transition is not possible Check Again !!!");
+
     }
 
     public void OnCollisionStay2D(Collision2D collision)
@@ -45,12 +44,9 @@ public class ReturnToOldPinState : IRingState
             ReturnBack();
     }
 
-    private void ReturnBack()
+    public void ReturnBack()
     {
-
-        ring.MoveTo(oldPinTopPosition.position, 1f);
-
-        //ring.transform.position = oldPinTopPosition.position;
-
+        var pos = ring.contoller.pinPositions[ring.currenPin - 1].position;
+        ring.MoveTo(pos, 1f);
     }
 }

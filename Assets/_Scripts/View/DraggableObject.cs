@@ -4,16 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class DraggableObject : MonoBehaviour
 {
-
     private Vector3 gameObjectCenter; // center of gameobject
     private Vector3 touchPosition; //touch or click position
     private Vector3 offset; // vector between touchpoint/mouseclick to object center
     private Vector3 newGameObjectCenter; // new center of gameobject
     private bool isDragging = false;
     private Rigidbody2D rigidBody;
-
-    [SerializeField]
-    private int maxRotationLimitWhenDragging = 30;
+    [SerializeField] private int maxRotationLimitWhenDragging = 30;
 
     private RingViewGameobject ring;
     public RingViewGameobject Ring

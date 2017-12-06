@@ -5,15 +5,14 @@ using System.Linq;
 
 public class GameLogicController : MonoBehaviour
 {
-    private Game game;
-
     [SerializeField] RingViewGameobject[] ringViews;
-    [SerializeField] Transform[] pinPositions;
     [SerializeField] GameObject gameWinText;
+    public Transform[] pinPositions;
 
     private int pinCount = 3;
     private int startingPinNumber = 1;
     private int ringCount = 4;
+    private Game game;
 
     void Start()
     {
@@ -22,7 +21,7 @@ public class GameLogicController : MonoBehaviour
         //Registering to  ring events (MVC controller-To-View comminication)
         foreach (var ring in ringViews)
         {
-            ring.OnRingIsOnThePinEvent += RingIsOnThePin;
+            ring.contoller = this;
         }
     }
 
@@ -41,9 +40,7 @@ public class GameLogicController : MonoBehaviour
         var ring = ringViews.First(x => x.ringNumber == lastPlayedRingNumber); // finds the failed ring
         game.AddRingToPin(lastPlayedRingNumber, ring.currenPin); //put the failed ring to old pin at Model
 
-        ring.returnToOldPinState.oldPinTopPosition = pinPositions[ring.currenPin - 1]; //assign falied ring  where to go back
         ring.currentState = ring.returnToOldPinState; //change failed rings state to go back 
-
     }
 
     private int lastPlayedPinNumber;
@@ -51,12 +48,13 @@ public class GameLogicController : MonoBehaviour
     public void TurnSuccess()
     {
         Debug.Log("TurnSuccess");
+
         var ring = ringViews.First(x => x.ringNumber == lastPlayedRingNumber); //gets the succesfully moved ring
-        ring.currenPin = lastPlayedPinNumber; //updates  the moved rings curren Pin
+        ring.currenPin = lastPlayedPinNumber;
         MakesOnlyTopRingsDraggable();// makes the top rings draggable
     }
 
-    private void RingIsOnThePin(RaycastHit2D raycastResult, int ringNumber)
+    public void RingIsOnThePin(RaycastHit2D raycastResult, int ringNumber)
     {
         lastPlayedRingNumber = ringNumber;
         var pin = raycastResult.collider.gameObject.GetComponent<PinViewGameobject>();
@@ -75,13 +73,13 @@ public class GameLogicController : MonoBehaviour
 
         foreach (var ring in ringViews)
         {
-            ring.currentState = ring.idleState;
+            ring.currentState.ToIdleState();
         }
 
         foreach (var number in draggableRings)
         {
             var ring = ringViews.First(x => x.ringNumber == number);
-            ring.currentState = ring.draggableState;
+            ring.currentState.ToDraggableState();
 
         }
     }

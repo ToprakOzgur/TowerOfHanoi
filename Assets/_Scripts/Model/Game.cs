@@ -7,24 +7,19 @@ public class Game
 {
     private GameLogicController gameContoller;
     private List<Pin> pins = new List<Pin>();
-
     public Logic logic;
-    public Player player;//more playes can be added if game extends. when become an  online game etc...
 
     public Game(GameLogicController gameContoller, int pinCount, int startingPinNumber, int ringCount) //constructor
     {
         this.gameContoller = gameContoller;
         logic = new Logic();
-        player = new Player();
 
         var startingPinSafe = Mathf.Clamp(startingPinNumber, 1, pinCount);//clamping startingpinnumber to prevent wrong entries
         for (int i = 0; i < pinCount; i++)
         {
-            pins.Add(new Pin(ringCount, i == startingPinSafe - 1)); //makes new rings and add to list,
+            pins.Add(new Pin(ringCount, i == startingPinSafe - 1));
         }
-
     }
-
 
     public void AddRingToPin(int ringNumber, int pinNumber)
     {
@@ -60,7 +55,7 @@ public class Game
             gameContoller.TurnSuccess();
 
 
-        if (ruleResults.Any(x => x.identifier == RuleResultIdentifiers.GameWinRuleResultIdentifier && x.result)) //there is Game Won Rule and result is true
+        if (ruleResults.Any(x => x.identifier == RuleResultIdentifiers.GameWinRuleResultIdentifier && x.result)) //there is GameWinnRule and result is true
         {
             gameContoller.GameWon();
             return;

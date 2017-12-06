@@ -20,22 +20,23 @@ public class IdleState : IRingState
 
     public void ToDraggableState()
     {
+        ring.GetComponent<Rigidbody2D>().isKinematic = false;
         ring.currentState = ring.draggableState;
     }
 
     public void ToReturnToOldPinState()
     {
-        Debug.LogWarning("transition is not possible from IdleState to returnOldPinState. Check Again !!!");
+
     }
 
     public void ToIdleState()
     {
-        Debug.Log("Already in IdleState");
+        ring.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     public void ToControlPinState()
     {
-        Debug.LogWarning("transition is not possible Check Again !!!");
+
     }
 
     public void OnCollisionStay2D(Collision2D collision)
